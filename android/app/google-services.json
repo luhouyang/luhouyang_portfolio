@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "988510991988",
+    "project_id": "luhouyang-portfolio",
+    "storage_bucket": "luhouyang-portfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988510991988:android:8d29d819601000cfb44321",
+        "android_client_info": {
+          "package_name": "com.example.luhouyang_portfolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5rJ-UnlSvllzEfojq6Viojn4okfdkftg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
