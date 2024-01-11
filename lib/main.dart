@@ -1,5 +1,4 @@
 // packages
-import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
 // firebase
@@ -23,16 +22,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DynamicColorBuilder(builder: (lightDynamic, darkDynamic) {
-      return MaterialApp(
-        title: "Lu Hou Yang Portfolio",
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          primaryColor: MyColors().primaryColor,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: const HomePage(),
-      );
-    });
+    return MaterialApp(
+      title: "Lu Hou Yang Portfolio",
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: MyColors().primaryColor,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+    );
   }
 }
