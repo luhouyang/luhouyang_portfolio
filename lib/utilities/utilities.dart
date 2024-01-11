@@ -12,11 +12,11 @@ class Utilities {
   static final resumeDownloadURL =
       '''https://jeeva-portfolio.s3.amazonaws.com/JEEVANANDHAM's+Resume.pdf''';
 
-  getMqWidth(BuildContext context) {
+  getMQWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
   }
 
-  getMqHeight(BuildContext context) {
+  getMQHeight(BuildContext context) {
     return MediaQuery.of(context).size.height;
   }
 
@@ -26,7 +26,7 @@ class Utilities {
   }
 
   ScreenType getScreenType(BuildContext context) {
-    double scrWidth = getMqWidth(context);
+    double scrWidth = getMQWidth(context);
     if (scrWidth > 915) {
       return ScreenType.web;
     } else if (scrWidth < 650) {
@@ -42,27 +42,25 @@ class Utilities {
   alertDialog(context, title, msg) {
     showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-                title: Text(title),
-                content: Text(msg),
-                actions: [
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(foregroundColor: MyColors().neonColor),
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('Okay'))
-                ]));
+        builder: (_) =>
+            AlertDialog(title: Text(title), content: Text(msg), actions: [
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      foregroundColor: MyColors().neonColor),
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Close'))
+            ]));
   }
 
   Future<bool> sendEmail(name, contact, msg) async {
     var url = Uri.https('hbk-portfolio-mailer.web.app', '/sendMail');
-    var response = await post(url, body: {
-      "name": name,
-      "contactInfo": contact,
-      "message": msg
-    }).timeout(Duration(seconds: 10)).onError((error, stackTrace) {
+    var response = await post(url,
+            body: {"name": name, "contactInfo": contact, "message": msg})
+        .timeout(const Duration(seconds: 10))
+        .onError((error, stackTrace) {
       return Response("body", 400);
     });
-    print(response.body);
+    debugPrint(response.body);
     return response.statusCode == 200;
   }
 }
