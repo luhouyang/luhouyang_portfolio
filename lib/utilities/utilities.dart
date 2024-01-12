@@ -9,8 +9,7 @@ class Utilities {
   static BuildContext? lastContext;
 
   /* URL */
-  static final resumeDownloadURL =
-      '''https://jeeva-portfolio.s3.amazonaws.com/JEEVANANDHAM's+Resume.pdf''';
+  static final resumeDownloadURL = '''''';
 
   getMQWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;

@@ -95,7 +95,8 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
                                 const Icon(Icons.computer_rounded, size: 18),
                                 2),
                             _popUpMenu("Contact",
-                                const Icon(Icons.phone_rounded, size: 18), 3),
+                                const Icon(Icons.phone_rounded, size: 18),
+                                3),
                           ],
                           child: const Icon(Icons.menu_rounded, size: 25),
                         )
