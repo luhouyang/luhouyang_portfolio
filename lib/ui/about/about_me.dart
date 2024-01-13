@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luhouyang_portfolio/ui/widgets/animations/image_loading_anim.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
 import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
 import 'package:luhouyang_portfolio/utilities/utilities.dart';
@@ -30,41 +31,61 @@ class _AboutMeState extends State<AboutMe> {
               child: TitleTextWidget(title: "About"),
             ),
           ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Stack(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
+              children: [
+                Column(
                   children: [
-                    Column(
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                          color: MyColors().borderColor,
+                          borderRadius: BorderRadius.circular(8.0)),
+                      width: Utilities().getMQWidth(context) * 0.8 - 10,
+                      height: 390,
+                    ),
+                  ],
+                ),
+                Positioned(
+                  bottom: 10,
+                  left: 10,
+                  child: Container(
+                    width: Utilities().getMQWidth(context) * 0.8 - 10,
+                    height: 390,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: MyColors().textBoxColor,
+                    ),
+                    child: Row(
                       children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            padding: const EdgeInsets.all(16.0),
+                            width: Utilities().getMQWidth(context) * 0.4 - 10,
+                            child: const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                          ),
+                        ),
                         const SizedBox(
-                          height: 10,
+                          width: 20,
                         ),
                         Container(
-                          margin: const EdgeInsets.only(right: 10),
+                          height: Utilities().getMQWidth(context) * 0.35,
+                          width: Utilities().getMQWidth(context) * 0.35,
                           decoration: BoxDecoration(
-                              color: MyColors().borderColor,
                               borderRadius: BorderRadius.circular(8.0)),
-                          width: Utilities().getMQWidth(context) * 0.4 - 10,
-                          height: 390,
+                          child: const ImageLoadingAnim(),
                         ),
                       ],
                     ),
-                    Positioned(
-                        bottom: 10,
-                        left: 10,
-                        child: Container(
-                          width: Utilities().getMQWidth(context) * 0.4 - 10,
-                          height: 390,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: MyColors().textBoxColor),
-                        ))
-                  ],
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           )
         ],
       ),
