@@ -112,9 +112,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     screenType == ScreenType.web
                         ? const NavigationLeftBar()
-                        : const SizedBox(),
+                        : const SizedBox(width: 10,),
                     Expanded(
-                        //  if loading show shimmer for each section
                         flex: 10,
                         child: ListView(
                           scrollDirection: scrollDirection,
@@ -138,20 +137,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         )
-                        /*ListView.builder(
-                        scrollDirection: scrollDirection,
-                        controller: scrollController,
-                        itemCount: contentList.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: _getRow(index, contentList[index], 500.0));
-                        },
-                      ),*/
                         ),
                     screenType == ScreenType.web
                         ? const NavigationRightBar()
-                        : const SizedBox(),
+                        : const SizedBox(width: 10,),
                   ],
                 );
               }(),

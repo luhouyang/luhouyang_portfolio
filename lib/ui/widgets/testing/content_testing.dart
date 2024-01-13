@@ -7,10 +7,8 @@ class ContentTesting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
-      decoration: BoxDecoration(
-        color: MyColors().textColor
-      ),
+      height: 1000,
+      decoration: BoxDecoration(color: MyColors().textAndContainer),
       child: const Center(child: Text("testing")),
     );
   }

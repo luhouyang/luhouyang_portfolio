@@ -30,11 +30,11 @@ class _NavigationRightBarState extends State<NavigationRightBar> {
                             child: Text(
                               'luhouyang@gmail.com',
                               style: TextStyle(
-                                  letterSpacing: 1,
-                                  color: MyColors().textColor,
-                                  fontSize: 14,
-                                  //fontFamily: 'sfmono',
-                                  ),
+                                letterSpacing: 1,
+                                color: MyColors().textAndContainer,
+                                fontSize: 14,
+                                //fontFamily: 'sfmono',
+                              ),
                             )),
                       )
                     ],

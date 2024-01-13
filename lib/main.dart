@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: "Lu Hou Yang Portfolio",
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: MyColors().primaryColor,
+        primaryColor: MyColors().borderColor,
       ),
       debugShowCheckedModeBanner: false,
       home: const HomePage(),

@@ -65,7 +65,7 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
   Widget build(BuildContext context) {
     return Container(
         height: 70,
-        padding: const EdgeInsets.fromLTRB(20, 20, 15, 0),
+        padding: const EdgeInsets.fromLTRB(0, 10, 15, 10),
         child: () {
           ScreenType screenType = Utilities().getScreenType(context);
           if (screenType == ScreenType.mobile || screenType == ScreenType.tab) {
@@ -78,7 +78,7 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         PopupMenuButton(
-                          color: MyColors().primaryColor,
+                          color: MyColors().borderColor,
                           itemBuilder: (c) => <PopupMenuEntry>[
                             _popUpMenu(
                                 "About",
@@ -95,8 +95,7 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
                                 const Icon(Icons.computer_rounded, size: 18),
                                 2),
                             _popUpMenu("Contact",
-                                const Icon(Icons.phone_rounded, size: 18),
-                                3),
+                                const Icon(Icons.phone_rounded, size: 18), 3),
                           ],
                           child: const Icon(Icons.menu_rounded, size: 25),
                         )
@@ -107,12 +106,9 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
           }
           return Row(
             children: [
-              Expanded(
-                  child: Container(
-                width: Utilities().getMQWidth(context) * 0.07,
-                height: Utilities().getMQHeight(context) * 0.07,
-                child: const Icon(Icons.sailing),
-              )),
+              const Expanded(
+                child: Icon(Icons.sailing),
+              ),
               Expanded(
                 flex: 9,
                 child: Row(

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
@@ -12,7 +13,73 @@ class NavigationLeftBar extends StatefulWidget {
 }
 
 class _NavigationLeftBarState extends State<NavigationLeftBar> {
+  late Timer _timer;
+  int _currentColorIndex = 0;
+
   String val = "";
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+      setState(() {
+        _currentColorIndex =
+            (_currentColorIndex + 1) % MyColors().gamingRGB.length;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  Widget _iconWidget(String url, String value, String svgAsset) {
+    return Container(
+      height: Utilities().getMQHeight(context) * 0.07,
+      child: Tooltip(
+        message: value == "git"
+            ? "Github"
+            : value == "insta"
+                ? "Instagram"
+                : value == "linkedIn"
+                    ? "Linked In"
+                    : value == "stackoverflow"
+                        ? "Stackoverflow"
+                        : "",
+        child: InkWell(
+          onTap: () async {
+            await launchUrl(Uri.parse(url));
+          },
+          onHover: (bol) {
+            setState(() {
+              if (bol) {
+                val = value;
+              } else {
+                val = "";
+              }
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.only(bottom: val == value ? 5.0 : 0),
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: SvgPicture.asset(svgAsset,
+                colorFilter: val == value
+                    ? ColorFilter.mode(MyColors().gamingRGB[_currentColorIndex],
+                        BlendMode.srcIn)
+                    : ColorFilter.mode(
+                        MyColors().textAndContainer, BlendMode.srcIn),
+                width: 22),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,148 +96,27 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Container(
-                        height: Utilities().getMQHeight(context) * 0.07,
-                        child: InkWell(
-                          onTap: () async {
-                            await launchUrl(
-                                Uri.parse("https://github.com/jeeva-HBK"));
-                          },
-                          onHover: (bol) {
-                            setState(() {
-                              if (bol) {
-                                val = "git";
-                              } else {
-                                val = "";
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin:
-                                EdgeInsets.only(bottom: val == "git" ? 5.0 : 0),
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SvgPicture.asset('assets/svg/github.svg',
-                                color: val == "git"
-                                    ? MyColors().neonColor
-                                    : MyColors().textColor,
-                                width: 22),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: Utilities().getMQHeight(context) * 0.07,
-                        child: InkWell(
-                          onTap: () {},
-                          onHover: (bol) {
-                            setState(() {
-                              if (bol) {
-                                val = "insta";
-                              } else {
-                                val = "";
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                bottom: val == "insta" ? 5.0 : 0),
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SvgPicture.asset('assets/svg/instagram.svg',
-                                color: val == "insta"
-                                    ? MyColors().neonColor
-                                    : MyColors().textColor,
-                                width: 22),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: Utilities().getMQHeight(context) * 0.07,
-                        child: InkWell(
-                          onTap: () async {
-                            await launchUrl(Uri.parse(
-                                "https://www.linkedin.com/in/jeeva-hbk/"));
-                          },
-                          onHover: (bol) {
-                            setState(() {
-                              if (bol) {
-                                val = "linkedIn";
-                              } else {
-                                val = "";
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                bottom: val == "linkedIn" ? 5.0 : 0),
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SvgPicture.asset('assets/svg/linkedIn.svg',
-                                color: val == "linkedIn"
-                                    ? MyColors().neonColor
-                                    : MyColors().textColor,
-                                width: 22),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: Utilities().getMQHeight(context) * 0.07,
-                        child: InkWell(
-                          onTap: () {},
-                          onHover: (bol) {
-                            setState(() {
-                              if (bol) {
-                                val = "twitter";
-                              } else {
-                                val = "";
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                bottom: val == "twitter" ? 5.0 : 0),
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SvgPicture.asset('assets/svg/twitter.svg',
-                                color: val == "twitter"
-                                    ? MyColors().neonColor
-                                    : MyColors().textColor,
-                                width: 22),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: Utilities().getMQHeight(context) * 0.07,
-                        child: InkWell(
-                          onTap: () async {
-                            await launchUrl(Uri.parse(
-                                "https://stackoverflow.com/users/19705360/mr-jeeva"));
-                          },
-                          onHover: (bol) {
-                            setState(() {
-                              if (bol) {
-                                val = "stackoverflow";
-                              } else {
-                                val = "";
-                              }
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(
-                                bottom: val == "stackoverflow" ? 5.0 : 0),
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: SvgPicture.asset(
-                                'assets/svg/stackoverflow.svg',
-                                color: val == "stackoverflow"
-                                    ? MyColors().neonColor
-                                    : MyColors().textColor,
-                                width: 22),
-                          ),
-                        ),
-                      ),
+                      _iconWidget("https://github.com/luhouyang", "git",
+                          "assets/svg/github.svg"),
+                      _iconWidget(
+                          "https://www.instagram.com/luhouyang?igsh=ajdnMW95ODJsMG4x",
+                          "insta",
+                          "assets/svg/instagram.svg"),
+                      _iconWidget(
+                          "https://www.linkedin.com/in/lu-hou-yang-ab69192a9",
+                          "linkedIn",
+                          "assets/svg/linkedIn.svg"),
+                      _iconWidget(
+                          "https://stackoverflow.com/users/23238085/lu-hou-yang",
+                          "stackoverflow",
+                          "assets/svg/stackoverflow.svg"),
                     ],
                   ),
                 ))),
             Expanded(
                 child: Container(
               width: 1,
-              color: MyColors().textColor,
+              color: MyColors().textAndContainer,
             ))
           ],
         ));
