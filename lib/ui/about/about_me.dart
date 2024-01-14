@@ -74,6 +74,7 @@ class _AboutMeState extends State<AboutMe> {
                           width: 20,
                         ),
                         Container(
+                          margin: const EdgeInsets.only(top: 10, bottom: 10),
                           height: Utilities().getMQWidth(context) * 0.35,
                           width: Utilities().getMQWidth(context) * 0.35,
                           decoration: BoxDecoration(

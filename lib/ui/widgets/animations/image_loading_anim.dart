@@ -13,10 +13,10 @@ class ImageLoadingAnim extends StatefulWidget {
 class ImageLoadingAnimState extends State {
   // set colours
   final List _colors = [
-    const Color(0xFFEECDA3),
-    const Color(0xFFEF629F),
-    const Color(0xFFEF10EF),
-    const Color(0xAA3310EF)
+    const Color.fromARGB(255, 211, 214, 255),
+    const Color.fromARGB(255, 180, 180, 255),
+    const Color.fromARGB(255, 140, 140, 255),
+    const Color.fromARGB(255, 100, 100, 255),
   ];
 
   // track colour

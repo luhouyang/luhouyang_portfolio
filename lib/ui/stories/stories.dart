@@ -11,6 +11,6 @@ class Stories extends StatefulWidget {
 class _StoriesState extends State<Stories> {
   @override
   Widget build(BuildContext context) {
-    return ContentTesting();
+    return const ContentTesting();
   }
 }

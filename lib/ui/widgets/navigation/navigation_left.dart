@@ -89,8 +89,7 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
           children: [
             Expanded(
                 flex: 4,
-                child: Container(
-                    child: Padding(
+                child: Padding(
                   padding: const EdgeInsets.only(bottom: 15.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -112,7 +111,7 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
                           "assets/svg/stackoverflow.svg"),
                     ],
                   ),
-                ))),
+                )),
             Expanded(
                 child: Container(
               width: 1,
