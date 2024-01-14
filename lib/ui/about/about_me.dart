@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:luhouyang_portfolio/ui/widgets/animations/image_loading_anim.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
+import 'package:luhouyang_portfolio/ui/widgets/testing/testing_placeholders.dart';
 import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
 import 'package:luhouyang_portfolio/utilities/utilities.dart';
 
@@ -67,7 +68,8 @@ class _AboutMeState extends State<AboutMe> {
                           child: Container(
                             padding: const EdgeInsets.all(16.0),
                             width: Utilities().getMQWidth(context) * 0.4 - 10,
-                            child: const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+                            child:
+                                Text(TestingPlaceholders().contentPlaceholder),
                           ),
                         ),
                         const SizedBox(
