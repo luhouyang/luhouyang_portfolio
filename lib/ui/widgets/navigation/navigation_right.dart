@@ -13,8 +13,7 @@ class _NavigationRightBarState extends State<NavigationRightBar> {
   Widget build(BuildContext context) {
     return Expanded(
         flex: 1,
-        child: Container(
-          child: Column(
+        child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Expanded(
@@ -45,6 +44,6 @@ class _NavigationRightBarState extends State<NavigationRightBar> {
               ))
             ],
           ),
-        ));
+        );
   }
 }
