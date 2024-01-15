@@ -18,39 +18,61 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final scrollDirection = Axis.vertical;
-  final List<String> contentList = ["abc", "def", "abc", "def"];
+  // top navigation bar
+  bool _visible = true;
 
+  // auto scrolling
+  final scrollDirection = Axis.vertical;
   late AutoScrollController scrollController;
 
-  bool _visible = true;
-  List<bool> visibleSection = [true, false, false, false];
-/*
-  Widget _getRow(int index, String data, double height) {
-    return _wrapScrollTag(
-        index: index,
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          alignment: Alignment.topCenter,
-          height: height,
-          decoration: BoxDecoration(
-              border: Border.all(color: Colors.lightBlue, width: 4),
-              borderRadius: BorderRadius.circular(12)),
-          child: Text('index: $index, data: $data'),
-        ));
+  // fade in
+  late Size windowSize;
+  int widgetNum = 4;
+  final List<GlobalKey> _keys = [];
+  List<bool> visibleBoolList = [];
+
+  void getPosition() {
+    debugPrint("Window Size: ${windowSize.height}");
+    for (int i = 0; i < widgetNum; i++) {
+      RenderObject? renderObject = _keys[i].currentContext?.findRenderObject();
+      if (renderObject != null) {
+        visibleBoolList[i] = true;
+        // RenderBox box = renderObject as RenderBox;
+        // Offset position =
+        //     box.localToGlobal(Offset.zero); //this is global position
+        // double y = position.dy; //this is y - I think it's what you want
+        // double h = box.size.height;
+        // debugPrint("key $i y position: $y   :::::    height: $h");
+      } else {
+        visibleBoolList[i] = false;
+      }
+    }
   }
-*/
-  Widget _wrapScrollTag({required int index, required Widget child}) =>
-      AutoScrollTag(
-        key: ValueKey(index),
-        controller: scrollController,
-        index: index,
-        highlightColor: Colors.black.withOpacity(0.1),
-        child: child,
-      );
+
+  Widget _wrapScrollTag({required int index, required Widget child}) {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 1100),
+      opacity: visibleBoolList[index] ? 1 : 0,
+      child: Container(
+        key: _keys[index],
+        margin: const EdgeInsets.only(bottom: 20),
+        child: AutoScrollTag(
+          key: ValueKey(index),
+          controller: scrollController,
+          index: index,
+          highlightColor: Colors.black.withOpacity(0.1),
+          child: child,
+        ),
+      ),
+    );
+  }
 
   @override
   void initState() {
+    for (int i = 0; i < widgetNum; i++) {
+      _keys.add(GlobalKey());
+      visibleBoolList.add(true);
+    }
     scrollController = AutoScrollController(
         viewportBoundaryGetter: () =>
             Rect.fromLTRB(0, 0, 0, MediaQuery.of(context).padding.bottom),
@@ -65,11 +87,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    windowSize = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
             body: NotificationListener<UserScrollNotification>(
       onNotification: (notification) {
         final ScrollDirection scrollDirection = notification.direction;
+        // final ScrollPosition scrollPosition = scrollController.position;
+        getPosition();
         setState(() {
           if (scrollDirection == ScrollDirection.reverse) {
             _visible = false;
@@ -77,7 +103,9 @@ class _HomePageState extends State<HomePage> {
             _visible = true;
           }
         });
-        debugPrint(_visible.toString());
+        // debugPrint("Top scroll extent: ${scrollPosition.pixels}");
+        // debugPrint("Bottom scroll extent: ${scrollPosition.pixels + windowSize.height}");
+        // debugPrint(_visible.toString());
         return true;
       },
       child: Container(
@@ -101,9 +129,6 @@ class _HomePageState extends State<HomePage> {
             TODO:
             ask for Coastalcare/TTS pictures
             sectioning (About, Projects (card view), Stories (expandables/point map), Contacts)
-            add shimmer
-            add image loading
-            use bool list for sequential loading? (add override if skipped)
             */
             Expanded(
               child: () {
@@ -112,7 +137,9 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     screenType == ScreenType.web
                         ? const NavigationLeftBar()
-                        : const SizedBox(width: 10,),
+                        : const SizedBox(
+                            width: 10,
+                          ),
                     Expanded(
                         flex: 10,
                         child: ListView(
@@ -120,27 +147,16 @@ class _HomePageState extends State<HomePage> {
                           controller: scrollController,
                           children: [
                             _wrapScrollTag(index: 0, child: const AboutMe()),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             _wrapScrollTag(index: 1, child: const Projects()),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             _wrapScrollTag(index: 2, child: const Stories()),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             _wrapScrollTag(index: 3, child: const Contacts()),
-                            const SizedBox(
-                              height: 20,
-                            ),
                           ],
-                        )
-                        ),
+                        )),
                     screenType == ScreenType.web
                         ? const NavigationRightBar()
-                        : const SizedBox(width: 10,),
+                        : const SizedBox(
+                            width: 10,
+                          ),
                   ],
                 );
               }(),

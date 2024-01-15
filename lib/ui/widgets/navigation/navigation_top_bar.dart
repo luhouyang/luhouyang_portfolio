@@ -51,7 +51,7 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
             Text(
               text,
               style: TextStyle(
-                color: MyColors().neonColor,
+                color: MyColors().neonLight,
                 fontSize: 13,
               ),
             ),
@@ -130,12 +130,12 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(3.0)),
                             border: Border.all(
-                                color: MyColors().neonColor, width: 1.5)),
+                                color: MyColors().neonLight, width: 1.5)),
                         child: Center(
                           child: Text(
                             'Resume',
                             style: TextStyle(
-                              color: MyColors().neonColor,
+                              color: MyColors().neonLight,
                               fontSize: 13,
                               letterSpacing: 1,
                               fontWeight: FontWeight.bold,

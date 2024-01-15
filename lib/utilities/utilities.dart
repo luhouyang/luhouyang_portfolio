@@ -45,7 +45,7 @@ class Utilities {
             AlertDialog(title: Text(title), content: Text(msg), actions: [
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      foregroundColor: MyColors().neonColor),
+                      foregroundColor: MyColors().neonLight),
                   onPressed: () => Navigator.pop(context),
                   child: const Text('Close'))
             ]));

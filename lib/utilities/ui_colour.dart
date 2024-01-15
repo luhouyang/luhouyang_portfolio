@@ -4,7 +4,8 @@ class MyColors {
   var textAndContainer = const Color.fromARGB(255, 139, 164, 255);
   var borderColor = const Color.fromARGB(255, 20, 16, 80);
   var textBoxColor = const Color.fromARGB(255, 61, 16, 134);
-  var neonColor = const Color.fromARGB(255, 118, 218, 238);
+  var neonLight = const Color.fromARGB(255, 118, 218, 238);
+  var neonDark = const Color.fromARGB(255, 119, 107, 230);
 
   final List<Color> gamingRGB = [
     const Color.fromARGB(255, 255, 0, 0),
