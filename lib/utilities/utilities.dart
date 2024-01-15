@@ -9,7 +9,7 @@ class Utilities {
   static BuildContext? lastContext;
 
   /* URL */
-  static final resumeDownloadURL = '''''';
+  static const resumeDownloadURL = '''''';
 
   getMQWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
