@@ -39,37 +39,37 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
     super.dispose();
   }
 
-  Widget _iconWidget(String url, String value, String svgAsset) {
+  Widget _iconWidget(String url, String iconName, String svgAsset) {
     return Container(
       height: Utilities().getMQHeight(context) * 0.07,
       child: Tooltip(
-        message: value == "git"
+        message: iconName == "git"
             ? "Github"
-            : value == "insta"
+            : iconName == "insta"
                 ? "Instagram"
-                : value == "linkedIn"
+                : iconName == "linkedIn"
                     ? "Linked In"
-                    : value == "stackoverflow"
+                    : iconName == "stackoverflow"
                         ? "Stackoverflow"
                         : "",
         child: InkWell(
           onTap: () async {
             await launchUrl(Uri.parse(url));
           },
-          onHover: (bol) {
+          onHover: (value) {
             setState(() {
-              if (bol) {
-                val = value;
+              if (value) {
+                val = iconName;
               } else {
                 val = "";
               }
             });
           },
           child: Container(
-            margin: EdgeInsets.only(bottom: val == value ? 5.0 : 0),
+            margin: EdgeInsets.only(bottom: val == iconName ? 5.0 : 0),
             padding: const EdgeInsets.only(bottom: 8.0),
             child: SvgPicture.asset(svgAsset,
-                colorFilter: val == value
+                colorFilter: val == iconName
                     ? ColorFilter.mode(MyColors().gamingRGB[_currentColorIndex],
                         BlendMode.srcIn)
                     : ColorFilter.mode(

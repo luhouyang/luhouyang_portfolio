@@ -10,6 +10,32 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
+  String selected = "";
+
+  Widget _testing(String name) {
+    return InkWell(
+      onHover: (value) {
+        setState(() {
+          if (value) {
+            selected = name;
+          } else {
+            selected = "";
+          }
+        });
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: selected == name ? 5.0 : 0),
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: Container(
+          decoration: BoxDecoration(
+              color: MyColors().textBoxColor,
+              borderRadius: BorderRadius.circular(8.0)),
+          child: const Text("stuff"),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,51 +58,21 @@ class _ProjectsState extends State<Projects> {
               padding: const EdgeInsets.all(8.0),
               child: GridView(
                 shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                     childAspectRatio: 1),
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: MyColors().textBoxColor,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    height: 100,
-                  ),
+                  _testing("first"),
+                  _testing("second"),
+                  _testing("third"),
+                  _testing("fourth"),
+                  _testing("fifth"),
+                  _testing("sixth"),
                 ],
               ),
-            )
+            ),
           ],
         ));
   }

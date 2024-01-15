@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   List<bool> visibleBoolList = [];
 
   void getPosition() {
-    debugPrint("Window Size: ${windowSize.height}");
+    // debugPrint("Window Size: ${windowSize.height}");
     for (int i = 0; i < widgetNum; i++) {
       RenderObject? renderObject = _keys[i].currentContext?.findRenderObject();
       if (renderObject != null) {
