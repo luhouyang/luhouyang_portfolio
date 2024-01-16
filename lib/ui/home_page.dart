@@ -33,7 +33,8 @@ class _HomePageState extends State<HomePage> {
 
   void getPosition() {
     // debugPrint("Window Size: ${windowSize.height}");
-    for (int i = 0; i < widgetNum; i++) {
+    setState(() {
+      for (int i = 0; i < widgetNum; i++) {
       RenderObject? renderObject = _keys[i].currentContext?.findRenderObject();
       if (renderObject != null) {
         visibleBoolList[i] = true;
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
         visibleBoolList[i] = false;
       }
     }
+    });
   }
 
   Widget _wrapScrollTag({required int index, required Widget child}) {
@@ -122,9 +124,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
-                opacity: _visible ? 1 : 0,
-                child: NavigationTopBar(scrollController: scrollController)),
+              duration: const Duration(milliseconds: 500),
+              opacity: _visible ? 1 : 0,
+              child: NavigationTopBar(
+                scrollController: scrollController,
+                getPosition: getPosition,
+              ),
+            ),
             /*
             TODO:
             ask for Coastalcare/TTS pictures

@@ -5,8 +5,10 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 
 class NavigationTopBar extends StatefulWidget {
   final AutoScrollController scrollController;
+  final Function getPosition; // check if widget is rendered after button press
 
-  const NavigationTopBar({super.key, required this.scrollController});
+  const NavigationTopBar(
+      {super.key, required this.scrollController, required this.getPosition});
 
   @override
   State<NavigationTopBar> createState() => _NavigationTopBarState();
@@ -19,9 +21,9 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
           width: 100,
           child: InkWell(
             onTap: () {
-              debugPrint(text);
               widget.scrollController.scrollToIndex(index,
                   preferPosition: AutoScrollPosition.begin);
+              widget.getPosition();
             },
             child: Row(
               children: [
@@ -39,11 +41,11 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
   InkWell _menuItem(String text, int index) {
     return InkWell(
       onTap: () {
-        debugPrint(text);
         widget.scrollController
             .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
+        widget.getPosition();
       },
-      onHover: (bol) {},
+      onHover: (value) {},
       child: Padding(
         padding: const EdgeInsets.only(right: 30.0),
         child: Row(
