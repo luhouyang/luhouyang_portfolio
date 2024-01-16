@@ -21,9 +21,12 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
           width: 100,
           child: InkWell(
             onTap: () {
-              widget.scrollController.scrollToIndex(index,
-                  preferPosition: AutoScrollPosition.begin);
-              widget.getPosition();
+              widget.scrollController
+                  .scrollToIndex(index,
+                      preferPosition: AutoScrollPosition.begin)
+                  .then((value) {
+                widget.getPosition();
+              });
             },
             child: Row(
               children: [
@@ -42,8 +45,10 @@ class _NavigationTopBarState extends State<NavigationTopBar> {
     return InkWell(
       onTap: () {
         widget.scrollController
-            .scrollToIndex(index, preferPosition: AutoScrollPosition.begin);
-        widget.getPosition();
+            .scrollToIndex(index, preferPosition: AutoScrollPosition.begin)
+            .then((value) {
+          widget.getPosition();
+        });
       },
       onHover: (value) {},
       child: Padding(
