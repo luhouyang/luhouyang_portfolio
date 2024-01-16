@@ -17,7 +17,7 @@ class _AboutMeState extends State<AboutMe> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: MyColors().textAndContainer,
+        //color: MyColors().textAndContainer,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(

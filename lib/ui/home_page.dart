@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _wrapScrollTag({required int index, required Widget child}) {
     return AnimatedOpacity(
-      duration: const Duration(milliseconds: 1100),
+      duration: const Duration(milliseconds: 1250),
       opacity: visibleBoolList[index] ? 1 : 0,
       child: Container(
         key: _keys[index],

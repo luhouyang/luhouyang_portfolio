@@ -10,7 +10,7 @@ class TitleTextWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(title, style: TextStyle(
       fontSize: 36,
-      color: MyColors().borderColor,
+      color: MyColors().textAndContainer,
       fontWeight: FontWeight.bold
     ),);
   }

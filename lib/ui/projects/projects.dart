@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
 import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
 
@@ -12,8 +13,9 @@ class Projects extends StatefulWidget {
 class _ProjectsState extends State<Projects> {
   String selected = "";
 
-  Widget _testing(String name) {
+  Widget _projectTile(String name) {
     return InkWell(
+      onTap: () {},
       onHover: (value) {
         setState(() {
           if (value) {
@@ -24,13 +26,102 @@ class _ProjectsState extends State<Projects> {
         });
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: selected == name ? 5.0 : 0),
-        padding: const EdgeInsets.only(bottom: 8.0),
-        child: Container(
-          decoration: BoxDecoration(
-              color: MyColors().textBoxColor,
-              borderRadius: BorderRadius.circular(8.0)),
-          child: const Text("stuff"),
+        margin: EdgeInsets.all(selected == name ? 8.0 : 0),
+        child: Card(
+          color: MyColors().textBoxColor,
+          elevation: 10,
+          child: Container(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/svg/folder.svg',
+                      width: 45,
+                      height: 45,
+                      colorFilter: ColorFilter.mode(
+                          MyColors().neonLight, BlendMode.srcIn),
+                    ),
+                    SvgPicture.asset(
+                      'assets/svg/externalLink.svg',
+                      width: 22,
+                      height: 22,
+                      colorFilter: selected == name
+                          ? ColorFilter.mode(
+                              MyColors().neonLight, BlendMode.srcIn)
+                          : ColorFilter.mode(
+                              MyColors().textAndContainer, BlendMode.srcIn),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 8.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        name,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: selected == name
+                                ? MyColors().neonLight
+                                : Colors.white,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    child: Text(
+                      name,
+                      style: TextStyle(
+                        color: MyColors().textAndContainer,
+                        letterSpacing: 1,
+                        height: 1.5,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Flutter" ?? "",
+                      style: TextStyle(
+                        color: MyColors().textAndContainer,
+                        letterSpacing: 1,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      "Java" ?? "",
+                      style: TextStyle(
+                        color: MyColors().textAndContainer,
+                        letterSpacing: 1,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      "HTML" ?? "",
+                      style: TextStyle(
+                        color: MyColors().textAndContainer,
+                        letterSpacing: 1,
+                        height: 1.5,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -40,7 +131,7 @@ class _ProjectsState extends State<Projects> {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: MyColors().textAndContainer,
+            //color: MyColors().textAndContainer,
             borderRadius: BorderRadius.circular(8.0)),
         child: Column(
           children: [
@@ -64,12 +155,12 @@ class _ProjectsState extends State<Projects> {
                     mainAxisSpacing: 10,
                     childAspectRatio: 1),
                 children: [
-                  _testing("first"),
-                  _testing("second"),
-                  _testing("third"),
-                  _testing("fourth"),
-                  _testing("fifth"),
-                  _testing("sixth"),
+                  _projectTile("first"),
+                  _projectTile("second"),
+                  _projectTile("third"),
+                  _projectTile("fourth"),
+                  _projectTile("fifth"),
+                  _projectTile("sixth"),
                 ],
               ),
             ),

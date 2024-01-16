@@ -9,7 +9,7 @@ class ContentTesting extends StatelessWidget {
     return Container(
       height: 1000,
       decoration: BoxDecoration(color: MyColors().textAndContainer),
-      child: const Center(child: Text("testing")),
+      child: const Center(child: Text("placeholder")),
     );
   }
 }
