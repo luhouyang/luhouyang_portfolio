@@ -52,6 +52,7 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
                     : iconName == "stackoverflow"
                         ? "Stackoverflow"
                         : "",
+        preferBelow: true,
         child: InkWell(
           onTap: () async {
             await launchUrl(Uri.parse(url));

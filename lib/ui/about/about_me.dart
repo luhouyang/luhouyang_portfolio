@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luhouyang_portfolio/ui/about/certificates/certificates.dart';
 import 'package:luhouyang_portfolio/ui/widgets/animations/image_loading_anim.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
 import 'package:luhouyang_portfolio/ui/widgets/testing/testing_placeholders.dart';
@@ -89,7 +90,8 @@ class _AboutMeState extends State<AboutMe> {
                 ),
               ],
             ),
-          )
+          ),
+          const Certificates()
         ],
       ),
     );
