@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:luhouyang_portfolio/ui/widgets/general/project_text_widget.dart';
+import 'package:luhouyang_portfolio/ui/widgets/general/text_button_widget.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
 import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
+import 'package:luhouyang_portfolio/utilities/utilities.dart';
 
 class Projects extends StatefulWidget {
   const Projects({super.key});
@@ -11,11 +14,15 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
+  // onHover
   String selected = "";
+
+  // onTap
+  bool clicked = false;
+  String clickedName = "";
 
   Widget _projectTile(String name) {
     return InkWell(
-      onTap: () {},
       onHover: (value) {
         setState(() {
           if (value) {
@@ -24,6 +31,14 @@ class _ProjectsState extends State<Projects> {
             selected = "";
           }
         });
+      },
+      onTap: () {
+        if (selected == name) {
+          setState(() {
+            clicked = true;
+            clickedName = name;
+          });
+        }
       },
       child: Container(
         margin: EdgeInsets.all(selected == name ? 8.0 : 0),
@@ -147,22 +162,77 @@ class _ProjectsState extends State<Projects> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: GridView(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    childAspectRatio: 1),
-                children: [
-                  _projectTile("first"),
-                  _projectTile("second"),
-                  _projectTile("third"),
-                  _projectTile("fourth"),
-                  _projectTile("fifth"),
-                  _projectTile("sixth"),
-                ],
-              ),
+              child: clicked
+                  ? Container(
+                      width: Utilities().getMQWidth(context),
+                      height: 500,
+                      decoration: BoxDecoration(
+                        color: MyColors().textBoxColor,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Column(
+                        children: [
+                          ProjectTextWidget(title: clickedName),
+                          Container(
+                            height: 2,
+                            width: Utilities().getMQWidth(context) * 0.8,
+                            decoration:
+                                BoxDecoration(color: MyColors().borderColor),
+                          ),
+                          SizedBox(
+                            height: 400,
+                          ),
+                          Container(
+                            height: 2,
+                            width: Utilities().getMQWidth(context) * 0.8,
+                            decoration:
+                                BoxDecoration(color: MyColors().borderColor),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(0, 10, 15, 0),
+                                child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        clicked = false;
+                                        clickedName = "";
+                                      });
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.arrow_back_rounded,
+                                          color: MyColors().neonLight,
+                                        ),
+                                        const TextButtonWidget(title: "Back"),
+                                      ],
+                                    )),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  : GridView(
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 1),
+                      children: [
+                        _projectTile("first"),
+                        _projectTile("second"),
+                        _projectTile("third"),
+                        _projectTile("fourth"),
+                        _projectTile("fifth"),
+                        _projectTile("sixth"),
+                      ],
+                    ),
             ),
           ],
         ));

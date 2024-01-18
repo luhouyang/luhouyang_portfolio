@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:luhouyang_portfolio/ui/widgets/general/title_text_widget.dart';
 import 'package:luhouyang_portfolio/ui/widgets/testing/testing_placeholders.dart';
-import 'package:luhouyang_portfolio/utilities/utilities.dart';
 
 class Certificates extends StatefulWidget {
   const Certificates({super.key});
@@ -14,7 +13,6 @@ class _CertificatesState extends State<Certificates> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Utilities().getMQHeight(context) * 0.4,
       decoration: BoxDecoration(
         //color: MyColors().textAndContainer,
         borderRadius: BorderRadius.circular(8.0),

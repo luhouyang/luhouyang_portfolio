@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
 
 class TestingPlaceholders {
   final String contentPlaceholder =
@@ -10,10 +9,6 @@ class TestingPlaceholders {
       message: "Creditation",
       preferBelow: true,
       verticalOffset: 75,
-        child: Icon(
-      Icons.shield_moon_sharp,
-      color: MyColors().neonLight,
-      size: 150,
-    )),
-  );
+        child: Image.asset("assets/pics/SD_Blue.png"),
+    ));
 }
