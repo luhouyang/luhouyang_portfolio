@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luhouyang_portfolio/ui/widgets/testing/content_testing.dart';
+import 'package:luhouyang_portfolio/ui/widgets/testing/testing_placeholders.dart';
 
 class Contacts extends StatefulWidget {
   const Contacts({super.key});
@@ -11,6 +11,6 @@ class Contacts extends StatefulWidget {
 class _ContactsState extends State<Contacts> {
   @override
   Widget build(BuildContext context) {
-    return const ContentTesting();
+    return TestingPlaceholders().testingContainer;
   }
 }

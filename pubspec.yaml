@@ -19,12 +19,14 @@ dependencies:
   url_launcher: ^6.1.5 #URLauncher
   http: ^1.0.0 #httpclient
   flutter_svg: ^2.0.9
+  cloud_firestore: ^4.14.0
+  firebase_storage: ^11.6.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
 

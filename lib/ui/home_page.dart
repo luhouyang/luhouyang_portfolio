@@ -153,8 +153,8 @@ class _HomePageState extends State<HomePage> {
                           controller: scrollController,
                           children: [
                             _wrapScrollTag(index: 0, child: const AboutMe()),
-                            _wrapScrollTag(index: 1, child: const Projects()),
-                            _wrapScrollTag(index: 2, child: const Stories()),
+                            _wrapScrollTag(index: 1, child: Projects(index: 1, scrollController: scrollController, getPosition: getPosition,)),
+                            _wrapScrollTag(index: 2, child: Stories(index: 2, scrollController: scrollController, getPosition: getPosition,)),
                             _wrapScrollTag(index: 3, child: const Contacts()),
                           ],
                         )),

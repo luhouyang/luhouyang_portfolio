@@ -16,7 +16,7 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
   late Timer _timer;
   int _currentColorIndex = 0;
 
-  String val = "";
+  String selectedIcon = "";
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
@@ -51,6 +51,8 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
                     ? "Linked In"
                     : iconName == "stackoverflow"
                         ? "Stackoverflow"
+                        : iconName == "googleplay"
+                        ? "Google Play"
                         : "",
         preferBelow: true,
         child: InkWell(
@@ -60,17 +62,17 @@ class _NavigationLeftBarState extends State<NavigationLeftBar> {
           onHover: (value) {
             setState(() {
               if (value) {
-                val = iconName;
+                selectedIcon = iconName;
               } else {
-                val = "";
+                selectedIcon = "";
               }
             });
           },
           child: Container(
-            margin: EdgeInsets.only(bottom: val == iconName ? 5.0 : 0),
+            margin: EdgeInsets.only(bottom: selectedIcon == iconName ? 5.0 : 0),
             padding: const EdgeInsets.only(bottom: 8.0),
             child: SvgPicture.asset(svgAsset,
-                colorFilter: val == iconName
+                colorFilter: selectedIcon == iconName
                     ? ColorFilter.mode(MyColors().gamingRGB[_currentColorIndex],
                         BlendMode.srcIn)
                     : ColorFilter.mode(

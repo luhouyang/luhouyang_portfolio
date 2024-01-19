@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luhouyang_portfolio/utilities/ui_colour.dart';
 
 class TestingPlaceholders {
   final String contentPlaceholder =
@@ -11,4 +12,10 @@ class TestingPlaceholders {
       verticalOffset: 75,
         child: Image.asset("assets/pics/SD_Blue.png"),
     ));
+
+    final Widget testingContainer = Container(
+      height: 1000,
+      decoration: BoxDecoration(color: MyColors().textAndContainer),
+      child: const Center(child: Text("placeholder")),
+    );
 }
