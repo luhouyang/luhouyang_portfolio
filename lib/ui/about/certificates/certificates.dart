@@ -37,6 +37,7 @@ class _CertificatesState extends State<Certificates> {
               childAspectRatio: 1
               ),
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
             children: [
               TestingPlaceholders().certBadge,
               TestingPlaceholders().certBadge,

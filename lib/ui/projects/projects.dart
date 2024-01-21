@@ -322,6 +322,7 @@ class _ProjectsState extends State<Projects> {
                   ? _singleView()
                   : GridView(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
