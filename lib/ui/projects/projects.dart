@@ -183,8 +183,7 @@ class _ProjectsState extends State<Projects> {
         });
       },
       onTap: () {
-        if (selectedCard == name) {
-          setState(() {
+        setState(() {
             clicked = true;
             clickedName = name;
           });
@@ -194,7 +193,6 @@ class _ProjectsState extends State<Projects> {
               .then((value) {
             widget.getPosition();
           });
-        }
       },
       child: Container(
         margin: EdgeInsets.all(selectedCard == name ? 8.0 : 0),
